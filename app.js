@@ -14,6 +14,19 @@ app.get('/user', function(req, res) {
     });
 });
 
+app.get('/user/:nome', function(req, res) {
+    res.send({
+        nome: req.params.nome
+    });
+});
+
+app.get('/user/:nome/sobrenome/:sobrenome', function(req, res) {
+    res.send({
+        nome: req.params.nome,
+        sobrenome: req.params.sobrenome
+    });
+});
+
 app.delete('/user', function(req, res) {
     res.send({
         nome: 'José deletado'

@@ -5,7 +5,7 @@ const PORT = 8080;
 const app = express();
 
 app.get('/', function(req, res) {
-    res.send('Hellow World');
+    res.send('Hellow World TESTE');
 });
 
 app.get('/user', function(req, res) {

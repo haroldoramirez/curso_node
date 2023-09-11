@@ -4,8 +4,7 @@
   "description": "estudos node",
   "main": "teste.js",
   "scripts": {
-    "start": "node teste.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Haroldo Ramirez da Nobrega",
   "license": "ISC",

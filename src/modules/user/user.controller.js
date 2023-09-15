@@ -6,7 +6,7 @@ const router = Router();
 
 userRouter.use('/user', router);
 
-//Inicio da rota depois do user
+//Inicio da rota depois do user - tipo o index
 router.get('/', function (req, res) {
   res.send('Hello world USER');
 });

@@ -1,8 +1,9 @@
+import { Express } from 'express-serve-static-core';
 import fs from 'fs';
 import path from 'path';
 
 //Criar rotas de forma automatica
-export const routerLoader = (app) => {
+export const routerLoader = (app: Express): void => {
   const caminhoModulos = path.join(__dirname, 'modules');
 
   //Percorre para verificar todas as pastas dentro do modules

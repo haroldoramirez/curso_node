@@ -10,6 +10,6 @@ app.use(express.json());
 
 routerLoader(app);
 
-app.listen(PORT, function () {
+app.listen(PORT, (): void => {
   console.log('Servidor rodando na porta: ', PORT);
 });

@@ -14,7 +14,7 @@ router.get('/', async (_, res: Response): Promise<void> => {
   res.send(usersList);
 });
 
-router.get('/:nome/sobrenome/:sobrenome', async (req: Request, res: Response) : Promise<void> => {
+router.get('/:nome/sobrenome/:sobrenome', async (req: Request, res: Response): Promise<void> => {
   res.send({
     nome: req.params.nome,
     sobrenome: req.params.sobrenome,

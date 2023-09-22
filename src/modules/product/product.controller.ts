@@ -7,7 +7,7 @@ const router = Router();
 productRouter.use('/product', router);
 
 //Inicio da rota depois do user - tipo o index
-router.get('/', (_, res: Response):void => {
+router.get('/', (_, res: Response): void => {
   res.send('Hello world PRODUCT');
 });
 

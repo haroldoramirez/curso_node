@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-export const userRouter = Router();
+const userRouter = Router();
 
 const router = Router();
 
@@ -17,3 +17,5 @@ router.get('/:nome/sobrenome/:sobrenome', function (req, res) {
     sobrenome: req.params.sobrenome,
   });
 });
+
+export default userRouter;

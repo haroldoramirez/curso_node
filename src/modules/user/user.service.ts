@@ -8,7 +8,7 @@ export const getUsers = async (): Promise<UserModel[]> => {
   return prisma.user.findMany();
 };
 
-export const createUser = async (body: UserInsertDTO): Promise<UserModel => {
+export const createUser = async (body: UserInsertDTO): Promise<UserModel> => {
   console.log('body', body);
   return prisma.user.create({
     data: body,

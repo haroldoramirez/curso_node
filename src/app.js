@@ -5,6 +5,9 @@ const PORT = 8080;
 
 const app = express();
 
+//Fazer a conversao do body em requests json
+app.use(express.json());
+
 routerLoader(app);
 
 app.listen(PORT, function () {

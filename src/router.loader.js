@@ -6,34 +6,25 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export const routerLoader = (app) => {
+  const caminhoModulos = path.join(__dirname, 'modules');
 
-    const caminhoModulos = path.join(__dirname, 'modules');
+  //Percorre para verificar todas as pastas dentro do modules
+  fs.readdirSync(caminhoModulos).forEach(async (diretorio) => {
+    const modulo = path.join(caminhoModulos, diretorio);
+    console.log('caminhoModulo: ', modulo);
 
-    //Percorre para verificar todas as pastas dentro do modules
-    fs.readdirSync(caminhoModulos).forEach(async (diretorio) => {
+    if (fs.statSync(caminhoModulos).isDirectory()) {
+      const caminhoController = path.join(modulo, `${diretorio}.controller.js`);
 
-        const modulo = path.join(caminhoModulos, diretorio);
-        console.log('caminhoModulo: ', modulo);
+      console.log('caminhoController', caminhoController);
 
-        if(fs.statSync(caminhoModulos).isDirectory()) {
-        
-            const caminhoController = path.join(modulo, `${diretorio}.controller.js`);
+      if (fs.existsSync(caminhoController)) {
+        const controller = await import(caminhoController);
 
-            console.log('caminhoController', caminhoController);
-
-            if (fs.existsSync(caminhoController)) {
-                const controller = await import(caminhoController);
-
-                if (controller.default && typeof controller.default === 'function') {
-
-                    app.use(controller.default);
-
-                }
-
-            }
-            
+        if (controller.default && typeof controller.default === 'function') {
+          app.use(controller.default);
         }
-
-    });
-
-}
+      }
+    }
+  });
+};

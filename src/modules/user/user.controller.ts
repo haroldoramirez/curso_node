@@ -12,14 +12,14 @@ userRouter.use('/user', router);
 
 //Inicio da rota depois do user - tipo o index
 router.get('/', async (_, res: Response): Promise<void> => {
-  const usersList = await getUsers().catch((error) => {
+  const listaUsuarios = await getUsers().catch((error) => {
     if (error instanceof NotFoundException) {
       res.status(204);
     } else {
-      new ReturnError(res, error)
+      new ReturnError(res, error);
     }
   });
-  res.send(usersList);
+  res.send(listaUsuarios);
 });
 
 router.get('/:nome/sobrenome/:sobrenome', async (req: Request, res: Response): Promise<void> => {
@@ -32,8 +32,10 @@ router.get('/:nome/sobrenome/:sobrenome', async (req: Request, res: Response): P
 router.post(
   '/',
   async (req: Request<undefined, undefined, UserInsertDTO>, res: Response): Promise<void> => {
-    const user = await createUser(req.body);
-    res.send(user);
+    const usuario = await createUser(req.body).catch((error) => {
+      new ReturnError(res, error);
+    });
+    res.send(usuario);
   },
 );
 

@@ -1,9 +1,7 @@
-import { AppException } from "./app-exception";
+import { AppException } from './app-exception';
 
 export class NotFoundException extends AppException {
-
-   constructor(entity: string) {
+  constructor(entity: string) {
     super(`${entity} não encontrado`);
-   }
-   
+  }
 }

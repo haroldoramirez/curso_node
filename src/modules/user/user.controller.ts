@@ -12,13 +12,11 @@ userRouter.use('/user', router);
 //Inicio da rota depois do user - tipo o index
 router.get('/', async (_, res: Response): Promise<void> => {
   const usersList = await getUsers().catch((error) => {
-
     if (error instanceof NotFoundException) {
       res.status(204);
     } else {
       res.status(500).send(error.message);
     }
-
   });
   res.send(usersList);
 });

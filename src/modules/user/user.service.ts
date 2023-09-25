@@ -6,7 +6,6 @@ import { NotFoundException } from '@exceptions/not-found-exception';
 const prisma = new PrismaClient();
 
 export const getUsers = async (): Promise<UserModel[]> => {
-
   const listaUsuarios = await prisma.user.findMany();
 
   if (listaUsuarios?.length === 0) {

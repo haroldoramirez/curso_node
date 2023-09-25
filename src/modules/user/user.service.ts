@@ -45,7 +45,6 @@ export const getUserByCpf = async (cpf: string): Promise<UserModel> => {
 };
 
 export const createUser = async (body: UserInsertDTO): Promise<UserModel> => {
-  
   const emailUsuario = await getUserByEmail(body.email).catch(() => undefined);
 
   if (emailUsuario) {
@@ -54,7 +53,7 @@ export const createUser = async (body: UserInsertDTO): Promise<UserModel> => {
 
   const emailCPF = await getUserByCpf(body.cpf).catch(() => undefined);
 
-  if (emailCPF ) {
+  if (emailCPF) {
     throw new BadRequestException('CPF encontrado no banco de dados');
   }
 

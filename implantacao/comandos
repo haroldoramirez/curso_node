@@ -7,4 +7,6 @@ Gerar o schema no banco de dados
 Executar dentro da pasta prisma, ou onde esteja o arquivco schema.prisma
 npx prisma migrate dev
 
+Para iniciar os testes com jest
 
+npm init jest@latest

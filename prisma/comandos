@@ -1,0 +1,10 @@
+Para gerar o schema
+
+npx prisma generate
+
+Gerar o schema no banco de dados
+
+Executar dentro da pasta prisma, ou onde esteja o arquivco schema.prisma
+npx prisma migrate dev
+
+

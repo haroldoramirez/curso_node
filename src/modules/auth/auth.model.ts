@@ -1,4 +1,4 @@
-import { UserModel } from "@modules/user/user.module";
+import { UserModel } from '@modules/user/user.module';
 
 export class AuthModel {
   token: string;

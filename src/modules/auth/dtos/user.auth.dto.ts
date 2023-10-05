@@ -1,5 +1,5 @@
 export interface UserAuthDTO {
-    userId: number;
-    email: string;
-    tipo: number;
-  }
+  userId: number;
+  email: string;
+  tipo: number;
+}

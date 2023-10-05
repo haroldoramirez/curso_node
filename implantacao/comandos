@@ -4,9 +4,17 @@ npx prisma generate
 
 Gerar o schema no banco de dados
 
-Executar dentro da pasta prisma, ou onde esteja o arquivco schema.prisma
+Executar dentro da pasta prisma, ou onde esteja o arquivo schema.prisma
 npx prisma migrate dev
 
 Para iniciar os testes com jest
+
+Instalar as dependencias do jest
+
+npm install jest @types/jest ts-jest --save-dev
+
+Depois executar o comando abaixo para que
+seja possível criar configurações personalizadas
+de testes
 
 npm init jest@latest

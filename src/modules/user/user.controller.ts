@@ -11,7 +11,9 @@ const router = Router();
 
 // Ordem 1
 //Necessario para nao interceptar com o middleware
-router.post('/', async (req: Request<undefined, undefined, UserInsertDTO>, res: Response): Promise<void> => {
+router.post(
+  '/',
+  async (req: Request<undefined, undefined, UserInsertDTO>, res: Response): Promise<void> => {
     const usuario = await createUser(req.body).catch((error) => {
       new ReturnError(res, error);
     });

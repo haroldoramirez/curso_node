@@ -13,7 +13,6 @@ userRouter.use('/user', router);
 
 //Inicio da rota depois do user - tipo o index
 router.get('/', async (req: Request, res: Response): Promise<void> => {
-
   const authorization = req.headers.authorization;
 
   verifyToken(authorization).catch((error) => {

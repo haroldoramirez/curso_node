@@ -2,7 +2,7 @@ import { Response, Router } from 'express';
 
 const getProducts = (_, res: Response): void => {
   res.send('Hello world PRODUCT');
-}
+};
 
 const productRouter = Router();
 

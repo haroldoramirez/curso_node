@@ -10,7 +10,7 @@ export const generateToken = (user: UserModel): string => {
     {
       userId: user.id, // 1 - Payload
       email: user.email,
-      tipo: user.typeUser,
+      typeUser: user.typeUser,
     } as UserAuthDTO,
     PASSWORD_JWT, // 2 - Password Token variavel de ambiente
     {

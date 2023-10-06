@@ -3,13 +3,16 @@ import { AuthDTO } from './dtos/auth.dto';
 import { validateAuth } from './auth.service';
 import { ReturnError } from '@exceptions/dtos/return-error-dto';
 
-const authController =   async (req: Request<undefined, undefined, AuthDTO>, res: Response): Promise<void> => {
+const authController = async (
+  req: Request<undefined, undefined, AuthDTO>,
+  res: Response,
+): Promise<void> => {
   const user = await validateAuth(req.body).catch((error) => {
     new ReturnError(res, error);
   });
 
   res.send(user);
-}
+};
 
 const authRouter = Router();
 

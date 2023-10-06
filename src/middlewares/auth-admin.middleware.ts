@@ -15,16 +15,13 @@ export const authAdminMiddleware = async (
 
   await verifyToken(authorization)
     .then((user: UserAuthDTO) => {
-
-        if (user.typeUser !== UserTypeEnum.ADMIN) {
-            new ReturnError(res, new UnauthorizedException())
-        } else {
-            next();
-        }
-
+      if (user.typeUser !== UserTypeEnum.ADMIN) {
+        new ReturnError(res, new UnauthorizedException());
+      } else {
+        next();
+      }
     })
     .catch((error) => {
       new ReturnError(res, error);
     });
-
 };

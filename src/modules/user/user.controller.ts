@@ -1,9 +1,11 @@
 import { Request, Response, Router } from 'express';
-import { createUser, getUsers } from './user.service';
+import { createUser, editPassword, getUsers } from './user.service';
 import { UserInsertDTO } from './dtos/user-insert.dto';
 import { NotFoundException } from '@exceptions/not-found-exception';
 import { ReturnError } from '@exceptions/dtos/return-error-dto';
 import { authAdminMiddleware } from 'src/middlewares/auth-admin.middleware';
+import { authMiddleware } from 'src/middlewares/auth.middleware';
+import { UserEditPasswordDTO } from './dtos/user-edit-password.dto';
 
 const createUserController = async (
   req: Request<undefined, undefined, UserInsertDTO>,
@@ -26,6 +28,13 @@ const getUsersController = async (req: Request, res: Response): Promise<void> =>
   res.send(listaUsuarios);
 };
 
+const editPasswordController = async (req: Request<undefined, undefined, UserEditPasswordDTO>, res: Response): Promise<void> => {
+  const user = await editPassword(2, req.body).catch((error) => {
+    new ReturnError(res, error)
+  });
+  res.send(user);
+}
+
 const userRouter = Router();
 const router = Router();
 
@@ -35,7 +44,9 @@ userRouter.use('/user', router);
 //Necessario para nao interceptar com o middleware
 router.post('/', createUserController);
 
-//router.use(authMiddleware);
+router.use(authMiddleware);
+router.patch('/', editPasswordController)
+
 router.use(authAdminMiddleware);
 
 //Inicio da rota depois do user - tipo o index

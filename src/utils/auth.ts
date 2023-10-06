@@ -38,9 +38,7 @@ export const verifyToken = async (authorization?: string): Promise<UserAuthDTO> 
 };
 
 export const getUserByToken = async (req: Request): Promise<UserAuthDTO> => {
-
   const authorization = req.headers.authorization;
 
   return verifyToken(authorization);
-
-}
+};

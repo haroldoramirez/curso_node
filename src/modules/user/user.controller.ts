@@ -29,7 +29,10 @@ const getUsersController = async (req: Request, res: Response): Promise<void> =>
   res.send(listaUsuarios);
 };
 
-const editPasswordController = async (req: Request<undefined, undefined, UserEditPasswordDTO>, res: Response): Promise<void> => {
+const editPasswordController = async (
+  req: Request<undefined, undefined, UserEditPasswordDTO>,
+  res: Response,
+): Promise<void> => {
   const userAuth = await getUserByToken(req);
   const user = await editPassword(userAuth.userId, req.body).catch((error) => {
     new ReturnError(res, error);

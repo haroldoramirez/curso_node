@@ -9,7 +9,9 @@
     "lint:fix": "npx eslint ./src --ext .ts --fix",
     "lint:format": "npx prettier --log-level warn --write \"./**/*.{js,ts}\" ",
     "lint": "npm run lint:format && npm run lint:fix",
-    "test": "jest"
+    "test": "jest",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migration": "npx prisma migrate dev"
   },
   "author": "Haroldo Ramirez da Nobrega",
   "license": "ISC",

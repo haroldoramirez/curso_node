@@ -5,28 +5,14 @@ import { NotFoundException } from '@exceptions/not-found-exception';
 import { ReturnError } from '@exceptions/dtos/return-error-dto';
 import { authMiddleware } from 'src/middlewares/auth.middleware';
 
-const userRouter = Router();
+const createUserController = async (req: Request<undefined, undefined, UserInsertDTO>, res: Response): Promise<void> => {
+  const usuario = await createUser(req.body).catch((error) => {
+    new ReturnError(res, error);
+  });
+  res.send(usuario);
+}
 
-const router = Router();
-
-// Ordem 1
-//Necessario para nao interceptar com o middleware
-router.post(
-  '/',
-  async (req: Request<undefined, undefined, UserInsertDTO>, res: Response): Promise<void> => {
-    const usuario = await createUser(req.body).catch((error) => {
-      new ReturnError(res, error);
-    });
-    res.send(usuario);
-  },
-);
-
-router.use(authMiddleware);
-
-userRouter.use('/user', router);
-
-//Inicio da rota depois do user - tipo o index
-router.get('/', async (req: Request, res: Response): Promise<void> => {
+const getUsersController = async (req: Request, res: Response): Promise<void> => {
   const listaUsuarios = await getUsers().catch((error) => {
     if (error instanceof NotFoundException) {
       res.status(204);
@@ -35,6 +21,20 @@ router.get('/', async (req: Request, res: Response): Promise<void> => {
     }
   });
   res.send(listaUsuarios);
-});
+}
+
+const userRouter = Router();
+const router = Router();
+
+userRouter.use('/user', router);
+
+// Ordem 1
+//Necessario para nao interceptar com o middleware
+router.post('/', createUserController);
+
+router.use(authMiddleware);
+
+//Inicio da rota depois do user - tipo o index
+router.get('/', getUsersController);
 
 export default userRouter;

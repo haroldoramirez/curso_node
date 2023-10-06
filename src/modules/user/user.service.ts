@@ -70,7 +70,6 @@ export const createUser = async (body: UserInsertDTO): Promise<UserModel> => {
 };
 
 export const getUserById = async (userId: number): Promise<UserModel> => {
-
   const user = await prisma.user.findFirst({
     where: {
       id: userId,
@@ -82,23 +81,21 @@ export const getUserById = async (userId: number): Promise<UserModel> => {
   } else {
     return user;
   }
+};
 
-}
-
-export const editPassword = async(userId: number, userEditPasswordDTO: UserEditPasswordDTO): Promise<UserModel> => {
+export const editPassword = async (
+  userId: number,
+  userEditPasswordDTO: UserEditPasswordDTO,
+): Promise<UserModel> => {
   const user = await getUserById(userId);
 
   const newUser = {
-
     ...user,
     password: await createPasswordHashed(userEditPasswordDTO.password),
-
-  }
+  };
 
   return prisma.user.update({
-
-    where: {id: userId},
+    where: { id: userId },
     data: newUser,
-
-  })
-}
+  });
+};

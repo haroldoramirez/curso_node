@@ -1,6 +1,7 @@
 import { UnauthorizedException } from '@exceptions/unauthorized-exception';
 import { UserAuthDTO } from '@modules/auth/dtos/user.auth.dto';
 import { UserModel } from '@modules/user/user.module';
+import { Request } from 'express';
 import { sign, verify } from 'jsonwebtoken';
 
 export const PASSWORD_JWT = 'senhadepoismudar';
@@ -35,3 +36,11 @@ export const verifyToken = async (authorization?: string): Promise<UserAuthDTO> 
     throw new UnauthorizedException();
   }
 };
+
+export const getUserByToken = async (req: Request): Promise<UserAuthDTO> => {
+
+  const authorization = req.headers.authorization;
+
+  return verifyToken(authorization);
+
+}
